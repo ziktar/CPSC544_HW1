@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent" 
-              android:layout_height="fill_parent" 
-              android:orientation="vertical" >
-    <TextView android:id="@+text/text"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1">
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text=""
+            android:padding="3dip" />
+        <TextView
+            android:layout_column="2"
+            android:text="Dice"
+            android:gravity="left"
+            android:padding="3dip" />
+        <TextView
+            android:layout_column="3"
+            android:text="Sum"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Computer (Application)"
+            android:gravity="left"
+            android:padding="3dip" />
+    <TextView android:id="@+computer/dice"
+            android:layout_column="2"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Hello, I am a TextView" />
+android:padding="3dip" 
+              android:text="" />
+    <TextView android:id="@+computer/sum"
+            android:layout_column="3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+android:padding="3dip" 
+              android:text="" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Game Player"
+            android:gravity="left"
+            android:padding="3dip" />
+    <TextView android:id="@+player/dice"
+            android:layout_column="2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+android:padding="3dip" 
+              android:text="" />
+    <TextView android:id="@+player/sum"
+            android:layout_column="3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+android:padding="3dip" 
+              android:text="" />
+    </TableRow>
+    <TableRow>
     <Button android:id="@+roll/button"
+            android:layout_column="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello, I am a Button" />
-</LinearLayout>
+            android:text="Play Game" />
+    </TableRow>
+</TableLayout>

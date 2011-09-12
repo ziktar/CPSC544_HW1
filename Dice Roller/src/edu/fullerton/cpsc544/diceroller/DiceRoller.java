@@ -23,12 +23,20 @@ public class DiceRoller extends Activity implements OnClickListener {
 	}
 
 	protected void updateRoll() {
-		TextView tv = (TextView) findViewById(R.text.text);
-		int userDie1 = (int) (Math.random() * 6 + 1);
-		int userDie2 = (int) (Math.random() * 6 + 1);
+		int playerDie1 = (int) (Math.random() * 6 + 1);
+		int playerDie2 = (int) (Math.random() * 6 + 1);
 		int computerDie1 = (int) (Math.random() * 6 + 1);
 		int computerDie2 = (int) (Math.random() * 6 + 1);
-		tv.setText("You rolled " + userDie1 + " and " + userDie2 + "\n"
-				+ "Computer rolled " + computerDie1 + " and " + computerDie2);
+		int result = (playerDie1 + playerDie2) - (computerDie1 + computerDie2);
+		TextView tv = (TextView) findViewById(R.computer.dice);
+		tv.setText(computerDie1 + " and " + computerDie2);
+		tv = (TextView) findViewById(R.computer.sum);
+		tv.setText("" + (computerDie1 + computerDie2)
+				+ (result > 0 ? "" : result == 0 ? " (tie)" : " (win)"));
+		tv = (TextView) findViewById(R.player.dice);
+		tv.setText(playerDie1 + " and " + playerDie2);
+		tv = (TextView) findViewById(R.player.sum);
+		tv.setText("" + (playerDie1 + playerDie2)
+				+ (result < 0 ? "" : result == 0 ? " (tie)" : " (win)"));
 	}
 }
