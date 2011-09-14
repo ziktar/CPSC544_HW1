@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class DiceRoller extends Activity implements OnClickListener {
+	private int[] playerDie = new int[2];
+	private int[] computerDie = new int[2];
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,20 +25,48 @@ public class DiceRoller extends Activity implements OnClickListener {
 	}
 
 	protected void updateRoll() {
-		int playerDie1 = (int) (Math.random() * 6 + 1);
-		int playerDie2 = (int) (Math.random() * 6 + 1);
-		int computerDie1 = (int) (Math.random() * 6 + 1);
-		int computerDie2 = (int) (Math.random() * 6 + 1);
-		int result = (playerDie1 + playerDie2) - (computerDie1 + computerDie2);
+		rollDice();
+		
+		int result = computeWinner(getUserDieRollSum(), getComputerDieRollSum());
+		
 		TextView tv = (TextView) findViewById(R.computer.dice);
-		tv.setText(computerDie1 + " and " + computerDie2);
+		tv.setText(getComputerDie(1) + " and " + getComputerDie(2));
 		tv = (TextView) findViewById(R.computer.sum);
-		tv.setText("" + (computerDie1 + computerDie2)
+		tv.setText("" + (getComputerDieRollSum())
 				+ (result > 0 ? "" : result == 0 ? " (tie)" : " (win)"));
 		tv = (TextView) findViewById(R.player.dice);
-		tv.setText(playerDie1 + " and " + playerDie2);
+		tv.setText(getUserDie(1) + " and " + getUserDie(2));
 		tv = (TextView) findViewById(R.player.sum);
-		tv.setText("" + (playerDie1 + playerDie2)
+		tv.setText("" + (getUserDieRollSum())
 				+ (result < 0 ? "" : result == 0 ? " (tie)" : " (win)"));
+	}
+
+	public void rollDice() {
+		playerDie[0] = (int) (Math.random() * 6 + 1);
+		playerDie[1] = (int) (Math.random() * 6 + 1);
+
+		computerDie[0] = (int) (Math.random() * 6 + 1);
+		computerDie[1] = (int) (Math.random() * 6 + 1);
+	}
+
+	public int getUserDie(int i) {
+		return playerDie[i - 1];
+	}
+
+	public int getComputerDie(int i) {
+		return computerDie[i - 1];
+	}
+
+	public int getUserDieRollSum() {
+		return getUserDie(1) + getUserDie(2);
+	}
+
+	public int getComputerDieRollSum() {
+		return getComputerDie(1) + getComputerDie(2);
+	}
+
+	public int computeWinner(int userSum, int computerSum) {
+		int result = userSum - computerSum;
+		return (result > 0 ? 1 : result < 0 ? -1 : 0);
 	}
 }
