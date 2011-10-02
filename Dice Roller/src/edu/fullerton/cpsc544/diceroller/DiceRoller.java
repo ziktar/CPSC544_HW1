@@ -30,13 +30,17 @@ public class DiceRoller extends Activity implements OnClickListener {
 		int result = computeWinner(getUserDieRollSum(), getComputerDieRollSum());
 		
 		TextView tv = (TextView) findViewById(R.computer.dice);
+		tv.setTextColor(0xFFFFF000);
 		tv.setText(getComputerDie(1) + " and " + getComputerDie(2));
 		tv = (TextView) findViewById(R.computer.sum);
+		tv.setTextColor(0xFFFFF000);
 		tv.setText("" + (getComputerDieRollSum())
 				+ (result > 0 ? "" : result == 0 ? " (tie)" : " (win)"));
 		tv = (TextView) findViewById(R.player.dice);
+		tv.setTextColor(0xFFF00000);
 		tv.setText(getUserDie(1) + " and " + getUserDie(2));
 		tv = (TextView) findViewById(R.player.sum);
+		tv.setTextColor(0xFFF00000);
 		tv.setText("" + (getUserDieRollSum())
 				+ (result < 0 ? "" : result == 0 ? " (tie)" : " (win)"));
 	}
